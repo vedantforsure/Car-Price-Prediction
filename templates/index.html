@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Car Price Prediction</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Car Price Prediction</h1>
+  </header>
+
+	<main>
+		<form method="POST" action="{{ url_for('predict') }}">
+		<div class="input-box">
+			<label for="make">Make:</label>
+			<select name="make" id="make" required>
+			  <option value="">Select a make</option>
+			  <option value="0">Chevrolet</option>
+			  <option value="1">Ford</option> 
+			  <option value="2">Honda</option>
+			  <option value="3">Nissan</option>
+			  <option value="4">Toyota</option>
+			  <!-- add more options as needed -->
+			</select>
+
+			<label for="model">Model:</label>
+			<select name="model" id="model" required>
+			  <option value="">Select a model</option>
+			  <option value="0">Accord</option>
+			  <option value="1">Altima</option>
+			  <option value="2">Camry</option>
+			  <option value="3">Cruze</option>
+			  <option value="4">Fusion</option>
+			  <!-- add more options as needed -->
+			</select>
+			<label for="year">Year:</label>
+			<select name="year" id="year" required>
+			  <option value="">Select a year</option>
+			  <option value="2010">2010</option> 
+			  <option value="2011">2011</option>
+			  <option value="2012">2012</option>
+			  <option value="2013">2013</option>
+			  <option value="2014">2014</option>
+			  <option value="2015">2015</option>
+			  <option value="2016">2016</option>
+			  <option value="2017">2017</option>
+			  <option value="2018">2018</option>
+			  <!-- add more options as needed -->
+			</select>
+				<label for="mileage">Mileage:</label>
+				<input type="text" name="mileage" id="mileage" required>
+
+				<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+			</form>
+		</div>
+
+		{% if prediction_text %}
+		<div class="output-box">
+			<h2>The Predicted Price is:</h2>
+			<p>{{ prediction_text.replace('$', '').replace('[', '').replace(']', '') }} USD$</p>
+		</div>
+		{% endif %}
+	</main>
+
+	<footer>
+		<p>&copy; 2023 Car Price Prediction</p>
+	</footer>
+</body>
+</html>
